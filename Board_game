@@ -101,3 +101,5 @@ while not win:
 
 print_board()
 print(f"Player {turns[1][0]} wins!")
+
+#https://replit.com/@SimonaG17/TIC-TAC-TOE-game?outputonly=1&embed=1
