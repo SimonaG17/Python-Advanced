@@ -1,4 +1,6 @@
 from collections import deque
+from colorama import Fore
+
 
 def print_board():
     [print(f"[ {', '.join(row)} ") for row in board]
@@ -56,10 +58,8 @@ rows, cols = 6, 7
 counter_for_draw = 0
 board = [["0"] * cols for row in range(rows)]
 
-#print(*board, sep="\n")
-
-player_1 = "1"
-player_2 = "2"
+player_1 = Fore.YELLOW + "X" + Fore.RESET
+player_2 = Fore.BLUE + "O" + Fore.RESET
 
 turns = deque([[1, player_1], [2, player_2]])
 
@@ -83,15 +83,15 @@ while not win:
     try:
         player_col = int(input(f"Player {player_number}, please chose a column: ")) - 1
     except ValueError:
-        print(f"Select a valid number in the range (1-{cols}")
+        print(Fore.RED + f"Select a valid number in the range (1-{cols}" + Fore.RESET)
         continue
     
     if not 0 <= player_col < cols:
-        print(f"Select a valid number in the range (1-{cols})")
+        print(Fore.RED + f"Select a valid number in the range (1-{cols})" + Fore.RESET)
         continue
 
     if board[0][player_col] != "0":
-        print("No empty spaces on that column, choose another one!")
+        print(Fore.RED + "No empty spaces on that column, choose another one!" + Fore.RESET)
         continue
 
     row = place_circle()
@@ -101,5 +101,7 @@ while not win:
 
 print_board()
 print(f"Player {turns[1][0]} wins!")
+
+
 
 #https://replit.com/@SimonaG17/TIC-TAC-TOE-game?outputonly=1&embed=1
