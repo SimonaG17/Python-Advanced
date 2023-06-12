@@ -1,5 +1,8 @@
 from collections import deque
 
+def print_board():
+    [print(f"[ {', '.join(row)} ") for row in board]
+
 
 def place_circle():
     row = 0
@@ -41,12 +44,16 @@ def check_for_win(row, col):
 
         if count >= 4:
             return True
+    if counter_for_draw == rows * cols:
+        print_board()
+        print("Draw!")
+        raise SystemExit
 
     return False
 
 
 rows, cols = 6, 7
-
+counter_for_draw = 0
 board = [["0"] * cols for row in range(rows)]
 
 #print(*board, sep="\n")
@@ -69,7 +76,7 @@ directions = (
     (1, -1),
 )
 while not win:
-    [print(f"[ {', '.join(row)} ") for row in board]
+    print_board()
 
     player_number, player_symbol = turns[0]
 
@@ -88,7 +95,9 @@ while not win:
         continue
 
     row = place_circle()
+    counter_for_draw += 1
     win = check_for_win(row, player_col)
     turns.rotate()
 
+print_board()
 print(f"Player {turns[1][0]} wins!")
