@@ -1,0 +1,11 @@
+from turtle import *
+
+color('green')
+bgcolor('black')
+speed(10.5)
+hideturtle()
+b = 0
+while b < 210:
+    right(b)
+    forward(b * 2)
+    b += 1
